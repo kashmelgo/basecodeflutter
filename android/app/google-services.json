@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "904871357107",
+    "project_id": "authactivity-mobdev",
+    "storage_bucket": "authactivity-mobdev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904871357107:android:142f06ba38ab30d6c99ec6",
+        "android_client_info": {
+          "package_name": "com.example.basecode"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904871357107-6s3tevsldomsb3uquvq1ej04hdmqave1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRpuyIU76CXcPRIx1fzg3-AcFet31zyDo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904871357107-6s3tevsldomsb3uquvq1ej04hdmqave1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
