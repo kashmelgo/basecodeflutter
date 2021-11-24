@@ -73,10 +73,7 @@ class LoginScreenState extends State<LoginScreen> {
                     PrimaryButton(
                         text: "Login",
                         iconData: FontAwesomeIcons.doorOpen,
-                        onPress: () {
-                          //authenticate here
-                          Get.offNamed(DashboardScreen.routeName);
-                        }),
+                        onPress: loginWithEmailAndPassword),
                     SizedBox(
                       height: 20.0,
                     ),
@@ -158,15 +155,13 @@ class LoginScreenState extends State<LoginScreen> {
       LocalStorageService.setRefreshToken(user.user.refreshToken);
 
       Get.offNamed(DashboardScreen.routeName);
-
     } catch (e) {
       e.toString();
       return null;
     }
 
     setState(() {
-        isLoggingIn = false;
-      });
-
+      isLoggingIn = false;
+    });
   }
 }

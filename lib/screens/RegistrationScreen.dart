@@ -107,9 +107,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                     PrimaryButton(
                         text: "Register",
                         iconData: FontAwesomeIcons.solidFolder,
-                        onPress: () {
-                          print("Register button");
-                        }),
+                        onPress: registerUser),
                     SizedBox(
                       height: 20.0,
                     ),
@@ -143,6 +141,9 @@ class RegistrationScreenState extends State<RegistrationScreen> {
       _isLoading = true;
     });
 
+    _firstNameController.value.text;
+
+    _firstNameController.text;
     var user = User(
         _firstNameController.value.text,
         _lastNameController.value.text,
