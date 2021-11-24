@@ -21,7 +21,7 @@ class AuthService {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
-  Future logout() async{
+  Future logout() async {
     try {
       await googleSignIn.disconnect();
       await FirebaseAuth.instance.signOut();
@@ -30,4 +30,16 @@ class AuthService {
       return null;
     }
   }
+
+  Future<UserCredential> createUser(String email, String password) async {
+    UserCredential userCredential = await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password);
+
+    return userCredential;
+  }
+
+  Future<UserCredential> signInWithEmailAndPassword(
+          String email, String password) async =>
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
 }

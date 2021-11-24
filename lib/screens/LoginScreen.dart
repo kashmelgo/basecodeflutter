@@ -2,6 +2,7 @@ import 'package:basecode/screens/DashboardScreen.dart';
 import 'package:basecode/screens/ForgotPasswordScreen.dart';
 import 'package:basecode/screens/RegistrationScreen.dart';
 import 'package:basecode/services/AuthService.dart';
+import 'package:basecode/services/LocalStorageService.dart';
 // import 'package:basecode/services/LocalStorageService.dart';
 import 'package:basecode/widgets/SecondaryButton.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,9 @@ class LoginScreenState extends State<LoginScreen> {
   AuthService authService = AuthService();
   bool _obscureText = true;
   bool isLoggingIn = false;
+
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +54,7 @@ class LoginScreenState extends State<LoginScreen> {
                         labelText: "Email",
                         hintText: "Enter a valid email.",
                         iconData: FontAwesomeIcons.solidEnvelope,
-                        controller: TextEditingController()),
+                        controller: _usernameController),
                     SizedBox(
                       height: 20.0,
                     ),
@@ -63,7 +67,7 @@ class LoginScreenState extends State<LoginScreen> {
                         },
                         labelText: "Password",
                         hintText: "Enter your password",
-                        controller: TextEditingController()),
+                        controller: _passwordController),
                     SizedBox(
                       height: 20.0,
                     ),
@@ -122,8 +126,9 @@ class LoginScreenState extends State<LoginScreen> {
         return;
       }
 
-      // LocalStorageService.setName(user.user.displayName);
-      // LocalStorageService.setUid(user.user.uid);
+      LocalStorageService.setName(user.user.displayName);
+      LocalStorageService.setUid(user.user.uid);
+      LocalStorageService.setRefreshToken(user.user.refreshToken);
 
       Get.offNamed(DashboardScreen.routeName);
     } catch (e) {
@@ -133,5 +138,36 @@ class LoginScreenState extends State<LoginScreen> {
     setState(() {
       isLoggingIn = false;
     });
+  }
+
+  loginWithEmailAndPassword() async {
+    try {
+      setState(() {
+        isLoggingIn = true;
+      });
+
+      var user = await authService.signInWithEmailAndPassword(
+          _usernameController.value.text, _passwordController.value.text);
+
+      if (user == null) {
+        print("Invalid user credentials");
+        return;
+      }
+
+      LocalStorageService.setName(user.user.displayName);
+      LocalStorageService.setUid(user.user.uid);
+      LocalStorageService.setRefreshToken(user.user.refreshToken);
+
+      Get.offNamed(DashboardScreen.routeName);
+
+    } catch (e) {
+      e.toString();
+      return null;
+    }
+
+    setState(() {
+        isLoggingIn = false;
+      });
+
   }
 }
