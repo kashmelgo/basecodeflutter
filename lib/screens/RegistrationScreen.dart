@@ -10,7 +10,7 @@ import 'package:basecode/widgets/SecondaryButton.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 import 'ForgotPasswordScreen.dart';
 
